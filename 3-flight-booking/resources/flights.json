@@ -1,0 +1,9 @@
+{"flightNum": "CA1000", "fromCity": "A", "arivCity": "B", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1001", "fromCity": "B", "arivCity": "C", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1002", "fromCity": "C", "arivCity": "D", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1003", "fromCity": "D", "arivCity": "E", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1004", "fromCity": "E", "arivCity": "F", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1005", "fromCity": "F", "arivCity": "G", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1006", "fromCity": "G", "arivCity": "H", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1007", "fromCity": "I", "arivCity": "J", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"flightNum": "CA1008", "fromCity": "J", "arivCity": "A", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}

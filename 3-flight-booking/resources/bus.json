@@ -1,0 +1,9 @@
+{"busNum": "B00", "location": "A", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B01", "location": "B", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B02", "location": "C", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B03", "location": "D", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B04", "location": "E", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B05", "location": "F", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B06", "location": "G", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B07", "location": "I", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
+{"busNum": "B08", "location": "J", "price": "4", "numSeats": 3, "numAvail": 3, "param": "{}"}
