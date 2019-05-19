@@ -173,3 +173,17 @@ def cancelReservation(resvNum):
     obj.numAvail += 1
     update(obj)
     remove(resvNum, "reservations")
+
+def queryReservation(custID):
+    query = "SELECT * FROM reservations WHERE custID=%s"
+    DBConnect.cursor.execute(query, (custID,))
+    results = DBConnect.cursor.fetchall()
+
+    if(results == None):
+        print("Reservations does not exist")
+        return None
+
+    objects = []
+    for result in results:
+        objects.append(Reservation(result))
+    return objects

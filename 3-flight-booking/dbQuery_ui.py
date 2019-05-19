@@ -30,10 +30,12 @@ class dbQuery(object):
         self.modifyFrame = Frame(self.tk)
         self.modifyFrame.grid(row=2, column=0, columnspan=3)
         if(mode == "Reservation"):
-            self.custIDEntryText = Label(self.modifyFrame, text="Customer ID", anchor="e", width=20)
+            self.custIDEntryText = Label(self.modifyFrame, text="Customer ID", anchor="e")
             self.custIDEntryText.grid(row=0, column=0)
             self.custIDEntry = Entry(self.modifyFrame, width=40)
             self.custIDEntry.grid(row=0, column=1)
+            self.custIDQueryButton = Button(self.modifyFrame, text="Query by Customer ID", command=self.custIDQuery)
+            self.custIDQueryButton.grid(row=0, column=2)
             
     def updateModifyFrame(self, *args):
         ## Mode Change
@@ -103,6 +105,10 @@ class dbQuery(object):
             for column in range(col):
                 self.dataFrame.grid_columnconfigure(column, weight = 1)        
 
+    def custIDQuery(self):
+        ## Click Cust-ID Query
+        self.dataFrame.destroy()
+        self.createDataFrame(backend.queryReservation(self.custIDEntry.get()))
 
     def updateDataFrame(self, *args):
         ## Click "Query"

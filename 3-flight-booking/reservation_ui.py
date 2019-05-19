@@ -86,26 +86,19 @@ class ReservationUI(object):
 
     def cancelReservation(self):
         backend.cancelReservation(self.resvNum.get())
+        self.updateFrame()
         
-
     def fillValues(self, *args):
         resvNum = self.resvNum.get()
         print(f"[UI] Fill Reservation Values on {resvNum}")
         obj = backend.getValue(resvNum, "reservations")
+        if(obj == None):
+            print("Reservation not found")
+            return
         
-        self.fromCity.delete(0, last="end")
-        self.fromCity.insert(0, obj.fromCity)
-        self.arivCity.delete(0, last="end")
-        self.arivCity.insert(0, obj.arivCity)
-        self.price.delete(0, last="end")
-        self.price.insert(0, obj.price)
-        self.totalNum.delete(0, last="end")
-        self.totalNum.insert(0, obj.numSeats)
-        self.availNum.delete(0, last="end")
-        self.availNum.insert(0, obj.numAvail)
-        
-        self.param.delete(0, last="end")
-        self.param.insert(0, obj.param)
+        self.custIDValue.configure(text = obj.custID)
+        self.resvKeyValue.configure(text = obj.resvKey)
+        self.resvTypeValue.configure(text = obj.resvType)
 
 if __name__ == "__main__":
     ReservationUI()
