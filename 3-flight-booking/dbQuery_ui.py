@@ -5,7 +5,7 @@ class dbQuery(object):
     def __init__(self):
 
         self.tk = Tk()
-        tk.title("DBQuery")
+        self.tk.title("DBQuery")
         
         self.modeText = Label(self.tk, text="Table to query", anchor="e", width=15)
         self.modeText.grid(row=1, column=0)

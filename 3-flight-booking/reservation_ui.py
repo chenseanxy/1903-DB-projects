@@ -6,7 +6,7 @@ class ReservationUI(object):
     def __init__(self):
 
         self.tk = Tk()
-        tk.title("Reservation UI")
+        self.tk.title("Reservation UI")
 
         self.ops = ["Add New Reservation", "Cancel Existing Reservation"]
         self.op = StringVar(self.tk)

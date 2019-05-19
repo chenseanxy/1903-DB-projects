@@ -5,7 +5,7 @@ class dbUpdate(object):
     def __init__(self):
 
         self.tk = Tk()
-        tk.title("DBUpdate")
+        self.tk.title("DBUpdate")
 
         self.ops = ["Add New", "Update Existing"]
         self.op = StringVar(self.tk)
