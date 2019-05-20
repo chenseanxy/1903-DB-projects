@@ -31,18 +31,20 @@ def add(obj):
     if(type(obj) == Flight):
         query = "INSERT INTO flights VALUES (%s,%s,%s,%s,%s,%s,%s)"
         params = obj.toTuple()
-    if(type(obj) == Hotel):
+    elif(type(obj) == Hotel):
         query = "INSERT INTO hotels VALUES (%s,%s,%s,%s,%s,%s)"
         params = obj.toTuple()
-    if(type(obj) == Bus):
+    elif(type(obj) == Bus):
         query = "INSERT INTO bus VALUES (%s,%s,%s,%s,%s,%s)"
         params = obj.toTuple()
-    if(type(obj) == Customer):
+    elif(type(obj) == Customer):
         query = "INSERT INTO customers VALUES (%s,%s)"
         params = obj.toTuple()
-    if(type(obj) == Reservation):
+    elif(type(obj) == Reservation):
         query = "INSERT INTO reservations VALUES (%s,%s,%s,%s)"
         params = obj.toTuple()
+    else:
+        print(f"[BACKEND] {obj} is not of valid type!")
 
     DBConnect.cursor.execute(query, params)
     DBConnect.cnx.commit()
@@ -64,43 +66,45 @@ def update(obj):
                   "WHERE flightNum=%s")
         params = obj.toUpdateTuple()
 
-    if(type(obj) == Hotel):
+    elif(type(obj) == Hotel):
         query = (f"UPDATE {getTable(obj)} "
                   "SET location=%s, price=%s, numRooms=%s, numAvail=%s, param=%s "
                   "WHERE hotelNum=%s")
         params = obj.toUpdateTuple()
         
-    if(type(obj) == Bus):
+    elif(type(obj) == Bus):
         query = (f"UPDATE {getTable(obj)} "
                   "SET location=%s, price=%s, numSeats=%s, numAvail=%s, param=%s "
                   "WHERE busNum=%s")
         params = obj.toUpdateTuple()
     
+    else:
+        print(f"[BACKEND] {obj} cannot be updated!")
     
     DBConnect.cursor.execute(query, params)
     DBConnect.cnx.commit()
 
 def getValue(primaryKey, table):
-    keyName = getKeyName(table)
+    keyName = getKeyName(table) #Get the PrimaryKey Name from Table Name
     query = f"SELECT * FROM {table} WHERE {keyName}=%s"
     
     DBConnect.cursor.execute(query, (primaryKey,))
     result = DBConnect.cursor.fetchone()
-    if(result == None):
-        return None
 
+    return createObj(result, table)
+
+def createObj(queryResult, table):
     if(table == "flights"):
-        obj = Flight(result)
+        return Flight(queryResult)
     if(table == "hotels"):
-        obj = Hotel(result)
+        return Hotel(queryResult)
     if(table == "bus"):
-        obj = Bus(result)
+        return Bus(queryResult)
     if(table == "reservations"):
-        obj = Reservation(result)
+        return Reservation(queryResult)
     if(table == "customers"):
-        obj = Customer(result)
-    
-    return obj
+        return Customer(queryResult)
+    return None
 
 def queryTable(table):
     query = f"SELECT * FROM {table}"
