@@ -1,6 +1,7 @@
 from tkinter import *
 import backend
 from entities import Reservation
+from reservation_backend import *
 
 class ReservationUI(object):
     def __init__(self):
@@ -82,10 +83,10 @@ class ReservationUI(object):
             int(self.resvType.get()),
             self.resvKey.get()
         ))
-        backend.newReservation(reservation)
+        newReservation(reservation)
 
     def cancelReservation(self):
-        backend.cancelReservation(self.resvNum.get())
+        cancelReservation(self.resvNum.get())
         self.updateFrame()
         
     def fillValues(self, *args):

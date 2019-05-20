@@ -1,5 +1,6 @@
 from tkinter import *
 import backend
+import reservation_backend
 
 class dbQuery(object):
     def __init__(self):
@@ -108,7 +109,7 @@ class dbQuery(object):
     def custIDQuery(self):
         ## Click Cust-ID Query
         self.dataFrame.destroy()
-        self.createDataFrame(backend.queryReservation(self.custIDEntry.get()))
+        self.createDataFrame(reservation_backend.queryReservation(self.custIDEntry.get()))
 
     def updateDataFrame(self, *args):
         ## Click "Query"
