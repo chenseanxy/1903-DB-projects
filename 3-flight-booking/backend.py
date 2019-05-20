@@ -1,9 +1,5 @@
 from mysql_db import *
-from flight import Flight
-from hotel import Hotel
-from bus import Bus
-from reservation import Reservation
-from customer import Customer
+from entities import *
 
 def getTable(obj):
     if(type(obj) == Flight):

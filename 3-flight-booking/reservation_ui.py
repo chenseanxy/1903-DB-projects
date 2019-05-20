@@ -1,6 +1,6 @@
 from tkinter import *
 import backend
-from reservation import Reservation
+from entities import Reservation
 
 class ReservationUI(object):
     def __init__(self):
