@@ -48,9 +48,14 @@ def add(obj):
 def remove(primaryKey, table):
     item = getValue(primaryKey, table)
     if(item == None):
+        print(f"[BACKEND] Object {primaryKey} from {table} does not exist")
         return
+    if(not item.isEmpty()):
+        print(f"[BACKEND] {item} is booked, please sort out the reservations first")
+        return
+    
     query = "DELETE FROM {} WHERE {}=%s".format(table, getKeyName(table))
-    print("DELETE FROM {} WHERE {}={}".format(table, getKeyName(table), primaryKey))
+
     DBConnect.cursor.execute(query, (primaryKey,))
     DBConnect.cnx.commit()
 

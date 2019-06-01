@@ -3,44 +3,54 @@ from backend import *
 def newReservation(reservation):
     if(reservation.resvType == 1):  #Flight
         obj = getValue(reservation.resvKey, "flights")
-
-    if(reservation.resvType == 2):  #Hotel
+    elif(reservation.resvType == 2):  #Hotel
         obj = getValue(reservation.resvKey, "hotels")
-
-    if(reservation.resvType == 3):  #Bus
+    elif(reservation.resvType == 3):  #Bus
         obj = getValue(reservation.resvKey, "bus")
-    
-    if(getValue(reservation.resvNum, "reservations") != None):
-        print(getValue(reservation.resvNum, "reservations"))
-        print("This reservation number is already taken")
+    else:
+        print(f"[BACKEND] Reservation mode {reservation.resvType} not available")
         return
     
-    if(getValue(reservation.custID, "customers") == None):
-        print("Customer Number does not exist")
+    if(obj == None):
+        print(f"[BACKEND] {reservation.resvKey} is not available")
+        return
 
-    if(obj.isFull() == False):
-        obj.numAvail -= 1
-        update(obj)
-        add(reservation)
-    else:
-        print(str(obj)+" is not available")
+    if(getValue(reservation.resvNum, "reservations") != None):
+        print(f"[BACKEND] RESV:{reservation.resvNum} is already taken")
+        print(getValue(reservation.resvNum, "reservations"))
+        return
+    if(getValue(reservation.custID, "customers") == None):
+        print(f"[BACKEND] CustID: {reservation.custID} does not exist")
+        return
+    if(obj.isFull() == True):
+        print(f"[BACKEND] {obj} is not available")
+        return
+
+    obj.numAvail -= 1
+    update(obj)
+    add(reservation)
     
 def cancelReservation(resvNum):
     reservation = getValue(resvNum, "reservations")
     if(reservation == None):
-        print("Reservation is not available")
+        print(f"[BACKEND] Reservation {resvNum} is not available")
         return
 
     if(reservation.resvType == 1):  #Flight
         obj = getValue(reservation.resvKey, "flights")
-    if(reservation.resvType == 2):  #Hotel
+    elif(reservation.resvType == 2):  #Hotel
         obj = getValue(reservation.resvKey, "hotels")
-    if(reservation.resvType == 3):  #Bus
+    elif(reservation.resvType == 3):  #Bus
         obj = getValue(reservation.resvKey, "bus")
-    
+    else:
+        print(f"[BACKEND] Reservation mode {reservation.resvType} not available")
+        return
+
     if(obj == None):
-        print("Requested item is not available")
-        print("Auto-cancelling reservation")
+        print(f"[BACKEND] Reserved item {reservation.resvKey} is not available")
+        print("[BACKEND] Auto-cancelling reservation")
+        remove(resvNum, "reservations")
+        return
     
     obj.numAvail += 1
     update(obj)
